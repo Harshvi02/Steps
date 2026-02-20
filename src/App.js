@@ -45,17 +45,32 @@ function Steps() {
 
 
   
-      <p>
-        Step {step}: {messages[step - 1]}
-      </p>
+        <StepMessage step={step}>
+  {messages[step - 1]}
+</StepMessage>
      
-      <button onClick={handlePrevious}>
-        Previous
-      </button>
+      <Button onClick={handlePrevious}>
+  Previous
+</Button>
 
-      <button onClick={handleNext}>
-        Next
-      </button>
+<Button onClick={handleNext}>
+  Next
+</Button>
     </div>
+  );
+}
+function StepMessage({ step, children }) {
+  return (
+    <div>
+      <h3>Step {step}</h3>
+      {children}
+    </div>
+  );
+}
+function Button({ children, onClick }) {
+  return (
+    <button onClick={onClick}>
+      {children}
+    </button>
   );
 }
