@@ -18,3 +18,11 @@
   background-color: #7950f2;
   color: white;
 }
+.steps {
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  text-align: center;
+}

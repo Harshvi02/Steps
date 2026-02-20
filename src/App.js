@@ -3,7 +3,8 @@ import { useState } from "react";
 export default function App() {
   return (
     
-    <div>
+    
+  <div className="steps">
       <Steps />
     </div>
   );
@@ -37,28 +38,41 @@ function Steps() {
       <button className="close" onClick={() => setIsOpen(!isOpen)}>
   ×
    </button>
-       <div className="numbers">
-        <div className={step >= 1 ? "active" : ""}>1</div>
-        <div className={step >= 2 ? "active" : ""}>2</div>
-        <div className={step >= 3 ? "active" : ""}>3</div>
-      </div>
+      {isOpen && (
+        <>
+          <div className="numbers">
+            <div className={step >= 1 ? "active" : ""}>1</div>
+            <div className={step >= 2 ? "active" : ""}>2</div>
+            <div className={step >= 3 ? "active" : ""}>3</div>
+          </div>
 
+          <StepMessage step={step}>
+            {messages[step - 1]}
+          </StepMessage>
 
-  
-        <StepMessage step={step}>
-  {messages[step - 1]}
-</StepMessage>
-     
-      <Button onClick={handlePrevious}>
-  Previous
-</Button>
+          <Button
+            bgColor="#7950f2"
+            textColor="#fff"
+            onClick={handlePrevious}
+          >
+            👈 Previous
+          </Button>
 
-<Button onClick={handleNext}>
-  Next
-</Button>
+          <Button
+            bgColor="#7950f2"
+            textColor="#fff"
+            onClick={handleNext}
+          >
+            Next 👉
+          </Button>
+        </>
+      )}
+
     </div>
   );
 }
+
+
 function StepMessage({ step, children }) {
   return (
     <div>
@@ -67,9 +81,20 @@ function StepMessage({ step, children }) {
     </div>
   );
 }
-function Button({ children, onClick }) {
+function Button({ textColor, bgColor, children, onClick }) {
   return (
-    <button onClick={onClick}>
+    <button
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        border: "none",
+        padding: "10px 15px",
+        margin: "5px",
+        borderRadius: "20px",
+        cursor: "pointer",
+      }}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
